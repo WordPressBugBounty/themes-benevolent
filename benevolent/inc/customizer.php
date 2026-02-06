@@ -1879,7 +1879,7 @@ function benevolent_customizer_scripts(){
     $array = array( 
         'ajax_url'   => admin_url( 'admin-ajax.php' ),
         'flushit'    => __( 'Successfully Flushed!','benevolent' ),
-        'nonce'      => wp_create_nonce('benevolent_flush_local_google_fonts_nonce')
+        'nonce'      => wp_create_nonce('ajax-nonce')
     );
     wp_enqueue_script( 'benevolent-customizer', get_template_directory_uri().'/inc/js/customizer.js', array( 'jquery' ), BENEVOLENT_THEME_VERSION, true );
     wp_localize_script( 'benevolent-customizer', 'benevolent_cdata', $array );
