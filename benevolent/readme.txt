@@ -3,8 +3,8 @@
 Contributors: raratheme
 Requires at least: 6.2
 Requires PHP: 7.3
-Tested up to: 6.4
-Stable tag: 1.3.8
+Tested up to: 6.9
+Stable tag: 1.3.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, two-columns, right-sidebar, footer-widgets, education, custom-background, custom-menu, featured-image-header, featured-images, post-formats, threaded-comments, translation-ready, full-width-template, theme-options, e-commerce
@@ -176,6 +176,9 @@ Benevolent WordPress Theme is distributed under the terms of the GPLv2 or later
    
    
 == Changelog ==
+
+    1.3.9 - January 20, 2026
+    * Fix: Translation loading early issue has been fixed.
 
     1.3.8 - August 09, 2024
     * Update: New dashboard has been implemented for better user experience.

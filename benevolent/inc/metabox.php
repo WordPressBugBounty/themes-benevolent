@@ -18,21 +18,32 @@ function benevolent_add_sidebar_layout_box(){
     );    
 }
 
-$benevolent_sidebar_layout = array(         
-    'right-sidebar' => array(
-        'value'     => 'right-sidebar',
-        'label'     => __( 'Right sidebar (default)', 'benevolent' ),
-        'thumbnail' => get_template_directory_uri() . '/images/right-sidebar.png'
-    ),
-    'no-sidebar' => array(
-        'value'     => 'no-sidebar',
-        'label'     => __( 'No sidebar', 'benevolent' ),
-        'thumbnail' => get_template_directory_uri() . '/images/no-sidebar.png'
-    )   
-);
+/**
+ * Get Sidebar Layout Data
+ *
+ * @return array
+ */
+if( ! function_exists( 'benevolent_get_sidebar_layout_data' ) ){
+    function benevolent_get_sidebar_layout_data(){
+        return array(
+            'right-sidebar' => array(
+                'value'     => 'right-sidebar',
+                'label'     => __( 'Right sidebar (default)', 'benevolent' ),
+                'thumbnail' => get_template_directory_uri() . '/images/right-sidebar.png'
+            ),
+            'no-sidebar' => array(
+                'value'     => 'no-sidebar',
+                'label'     => __( 'No sidebar', 'benevolent' ),
+                'thumbnail' => get_template_directory_uri() . '/images/no-sidebar.png'
+            ) 
+        );
+    }
+}
+
 
 function benevolent_sidebar_layout_callback(){
-    global $post, $benevolent_sidebar_layout;
+    global $post;
+    $benevolent_sidebar_layout = benevolent_get_sidebar_layout_data();
     wp_nonce_field( basename( __FILE__ ), 'benevolent_sidebar_layout_nonce' ); ?>
     <table class="form-table">
         <tr>
@@ -64,7 +75,8 @@ function benevolent_sidebar_layout_callback(){
  * @hooked to save_post hook
  */
 function benevolent_save_sidebar_layout( $post_id ) { 
-    global $benevolent_sidebar_layout; 
+    $benevolent_sidebar_layout = benevolent_get_sidebar_layout_data();
+
 
     // Verify the nonce before proceeding.
     if( !isset( $_POST[ 'benevolent_sidebar_layout_nonce' ] ) || !wp_verify_nonce( $_POST[ 'benevolent_sidebar_layout_nonce' ], basename( __FILE__ ) ) )
